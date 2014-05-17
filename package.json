@@ -1,0 +1,65 @@
+{
+  "name": "stem",
+  "version": "0.2.2",
+  "author": "Cédric Hartland <cedric.hartland@gmail.com>",
+  "description": "scallable architecture application supports",
+  "contributors": [
+    {
+      "name": "Cédric Hartland",
+      "email": "cedric.hartland@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": "node ./server/server",
+    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha",
+    "predeploy": "echo This will be run before deploying the app",
+    "postdeploy": "echo This will be run after deploying the app"
+  },
+  "main": "./server/server",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "scalable",
+    "architecture",
+    "framework"
+  ],
+  "dependencies": {
+    "express": "~4.1.0",
+    "compression": "~1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-cli": "~0.1.13",
+    "karma": "~0.12.1",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-coffeelint": "0.0.8",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-uglify": "~0.3.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-contrib-htmlmin": "~0.2.0",
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt-contrib-handlebars": "~0.7.0",
+    "grunt-contrib-csslint": "~0.2.0",
+    "mocha": "~1.18.2",
+    "karma-mocha": "~0.1.3",
+    "grunt-contrib-compress": "~0.7.0",
+    "karma-coverage": "~0.2.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-safari-launcher": "~0.1.1",
+    "chai": "~1.9.1",
+    "karma-chai": "~0.1.0",
+    "coffee-script": "~1.7.1",
+    "sinon": "~1.9.0",
+    "should": "~3.2.0",
+    "grunt-replace": "~0.7.6"
+  },
+  "bundledDependencies": [],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
+}
