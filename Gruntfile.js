@@ -3,13 +3,17 @@
  */
 module.exports = function (grunt) {
 
-    var nodePackage = grunt.file.readJSON('./package.json');
-    // grunt task definitions
     grunt.initConfig({
-        pkg: nodePackage,
-        // coffeescript compilation tasks
+        pkg: grunt.file.readJSON('./package.json'),
         coffee: {
-
+            backoffice: {
+                expand: true,
+                flatten: true,
+                cwd: 'back-office/',
+                src: ['**/*.coffee'],
+                dest: 'back-office/',
+                ext: '.js'
+            }
         },
         uglify: {
             minify: {

@@ -15,7 +15,7 @@ The following items are simple descriptions so far. Content are implicit and sub
 *  backlog item or item : One of the features for the product with a short description.
 
 ### Current Backlog 
-* [ ] Setup application content (package.json, Gruntfile.js)
+* [X] Setup application content (package.json, Gruntfile.js)
 * [ ] setup front-office environment
 * [ ] setup unit/integration test environment 
 * [ ] push general ui mockups
