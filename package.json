@@ -7,8 +7,10 @@
     "Cédric Hartland <cedric.hartland@gmail.com>"
   ],
   "scripts": {
+    "prestart":"grunt",
     "start": "node ./back-office/server",
-    "test": "grunt && ./node_modules/.bin/mocha"
+    "pretest":"grunt",
+    "test": "./node_modules/.bin/mocha"
   },
   "main": "./back-office/server",
   "repository": {

@@ -13,6 +13,14 @@ module.exports = function (grunt) {
                 src: ['**/*.coffee'],
                 dest: 'back-office/',
                 ext: '.js'
+            },
+            frontoffice: {
+                expand: true,
+                flatten: true,
+                cwd: 'front-office/js',
+                src: ['**/*.coffee'],
+                dest: 'front-office/js',
+                ext: '.js'
             }
         },
         uglify: {

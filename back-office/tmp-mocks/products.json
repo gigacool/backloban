@@ -1,0 +1,224 @@
+[
+    {
+        "id": 0,
+        "name": "My backloban product",
+        "backlog": [
+            {
+                "id": 0,
+                "title": "setup front-office environment"
+            },
+            {
+                "id": 1,
+                "title": "setup unit/integration test environment"
+            },
+            {
+                "id": 2,
+                "title": "push general ui mockups"
+            },
+            {
+                "id": 3,
+                "title": "create product"
+            },
+            {
+                "id": 4,
+                "title": "list products"
+            },
+            {
+                "id": 5,
+                "title": "select product"
+            },
+            {
+                "id": 6,
+                "title": "create minimal backlog item creation form"
+            },
+            {
+                "id": 7,
+                "title": "list backlog items"
+            },
+            {
+                "id": 8,
+                "title": "add new item to listing"
+            },
+            {
+                "id": 9,
+                "title": "delete item from listing"
+            },
+            {
+                "id": 10,
+                "title": "move items via drag 'n drop"
+            },
+            {
+                "id": 11,
+                "title": "move selected item via keyup/keydown"
+            },
+            {
+                "id": 12,
+                "title": "save and read items to server"
+            },
+            {
+                "id": 13,
+                "title": "show item detail in backlog item listing"
+            },
+            {
+                "id": 14,
+                "title": "add an item from the backlog to a ongoing work list item"
+            },
+            {
+                "id": 15,
+                "title": "remove an item from ongoing listing back to backlog"
+            },
+            {
+                "id": 16,
+                "title": "add nice icons and review design a bit"
+            },
+            {
+                "id": 17,
+                "title": "create tasks under an ongoing item"
+            },
+            {
+                "id": 18,
+                "title": "list tasks for a given item"
+            },
+            {
+                "id": 19,
+                "title": "close/reopen task"
+            },
+            {
+                "id": 20,
+                "title": "close backlog items"
+            },
+            {
+                "id": 21,
+                "title": "add tags to backlog item"
+            },
+            {
+                "id": 22,
+                "title": "list available tags"
+            },
+            {
+                "id": 23,
+                "title": "filter backlog per existing tags"
+            },
+            {
+                "id": 24,
+                "title": "add simple timeline product progress chart"
+            },
+            {
+                "id": 25,
+                "title": "take a nap and think about useful features such as user management, reporting or bug management"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "My backloban product clone",
+        "backlog": [
+            {
+                "id": 0,
+                "title": "setup front-office environment"
+            },
+            {
+                "id": 1,
+                "title": "setup unit/integration test environment"
+            },
+            {
+                "id": 2,
+                "title": "push general ui mockups"
+            },
+            {
+                "id": 3,
+                "title": "create product"
+            },
+            {
+                "id": 4,
+                "title": "list products"
+            },
+            {
+                "id": 5,
+                "title": "select product"
+            },
+            {
+                "id": 6,
+                "title": "create minimal backlog item creation form"
+            },
+            {
+                "id": 7,
+                "title": "list backlog items"
+            },
+            {
+                "id": 8,
+                "title": "add new item to listing"
+            },
+            {
+                "id": 9,
+                "title": "delete item from listing"
+            },
+            {
+                "id": 10,
+                "title": "move items via drag 'n drop"
+            },
+            {
+                "id": 11,
+                "title": "move selected item via keyup/keydown"
+            },
+            {
+                "id": 12,
+                "title": "save and read items to server"
+            },
+            {
+                "id": 13,
+                "title": "show item detail in backlog item listing"
+            },
+            {
+                "id": 14,
+                "title": "add an item from the backlog to a ongoing work list item"
+            },
+            {
+                "id": 15,
+                "title": "remove an item from ongoing listing back to backlog"
+            },
+            {
+                "id": 16,
+                "title": "add nice icons and review design a bit"
+            },
+            {
+                "id": 17,
+                "title": "create tasks under an ongoing item"
+            },
+            {
+                "id": 18,
+                "title": "list tasks for a given item"
+            },
+            {
+                "id": 19,
+                "title": "close/reopen task"
+            },
+            {
+                "id": 20,
+                "title": "close backlog items"
+            },
+            {
+                "id": 21,
+                "title": "add tags to backlog item"
+            },
+            {
+                "id": 22,
+                "title": "list available tags"
+            },
+            {
+                "id": 23,
+                "title": "filter backlog per existing tags"
+            },
+            {
+                "id": 24,
+                "title": "add simple timeline product progress chart"
+            },
+            {
+                "id": 25,
+                "title": "take a nap and think about useful features such as user management, reporting or bug management"
+            }
+        ]
+    }
+
+
+]
