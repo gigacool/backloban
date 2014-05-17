@@ -1,29 +1,24 @@
 {
-  "name": "stem",
-  "version": "0.2.2",
+  "name": "backloban",
+  "version": "0.1.0",
   "author": "Cédric Hartland <cedric.hartland@gmail.com>",
-  "description": "scallable architecture application supports",
+  "description": "Backloban is a simple web application dedicated toward providing simple product backlog management together with a simple Kanban process",
   "contributors": [
-    {
-      "name": "Cédric Hartland",
-      "email": "cedric.hartland@gmail.com"
-    }
+    "Cédric Hartland <cedric.hartland@gmail.com>"
   ],
   "scripts": {
-    "start": "node ./server/server",
-    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/mocha",
-    "predeploy": "echo This will be run before deploying the app",
-    "postdeploy": "echo This will be run after deploying the app"
+    "start": "node ./back-office/server",
+    "test": "grunt && ./node_modules/.bin/mocha"
   },
-  "main": "./server/server",
+  "main": "./back-office/server",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:gigacool/backloban.git"
   },
   "keywords": [
-    "scalable",
-    "architecture",
-    "framework"
+    "agile",
+    "backlog",
+    "kanban"
   ],
   "dependencies": {
     "express": "~4.1.0",
@@ -37,16 +32,13 @@
     "grunt-coffeelint": "0.0.8",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-uglify": "~0.3.3",
-    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-compass": "~0.7.2",
     "grunt-contrib-htmlmin": "~0.2.0",
     "grunt-contrib-requirejs": "~0.4.3",
     "grunt-contrib-handlebars": "~0.7.0",
     "grunt-contrib-csslint": "~0.2.0",
     "mocha": "~1.18.2",
     "karma-mocha": "~0.1.3",
-    "grunt-contrib-compress": "~0.7.0",
     "karma-coverage": "~0.2.1",
     "karma-chrome-launcher": "~0.1.2",
     "karma-safari-launcher": "~0.1.1",
@@ -54,12 +46,15 @@
     "karma-chai": "~0.1.0",
     "coffee-script": "~1.7.1",
     "sinon": "~1.9.0",
-    "should": "~3.2.0",
-    "grunt-replace": "~0.7.6"
+    "should": "~3.2.0"
   },
-  "bundledDependencies": [],
   "license": "MIT",
   "engines": {
-    "node": ">=0.6"
-  }
+    "node": ">=0.10"
+  },
+  "bugs": {
+    "url": "https://github.com/gigacool/backloban/issues"
+  },
+  "homepage": "https://github.com/gigacool/backloban",
+  "bundleDependencies": []
 }
