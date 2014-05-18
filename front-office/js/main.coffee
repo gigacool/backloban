@@ -28,7 +28,6 @@ require ['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation']
   products = new Products.Collection()
 
   products.on('sync', ()->
-    console.log 'here'
     listing = $('ul#products').html('')
     for product in products.models
       listing.append("<li>#{product.get('name')}</li>")
