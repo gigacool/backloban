@@ -16,7 +16,7 @@ The following items are simple descriptions so far. Content are implicit and sub
 
 ### Current Backlog 
 * [X] Setup application content (package.json, Gruntfile.js)
-* [ ] setup front-office environment
+* [X] setup front-office environment
 * [ ] setup unit/integration test environment 
 * [ ] push general ui mockups
 * [ ] create product 

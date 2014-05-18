@@ -16,7 +16,7 @@ module.exports = function (grunt) {
             },
             frontoffice: {
                 expand: true,
-                flatten: true,
+
                 cwd: 'front-office/js',
                 src: ['**/*.coffee'],
                 dest: 'front-office/js',
