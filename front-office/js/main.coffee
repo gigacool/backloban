@@ -26,14 +26,17 @@ require ['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation']
   $(document).ready().foundation()
 
   products = new Products.Collection()
+  productsView = new Products.View({collection:products, el:'#products-container'})
+  products.fetch()
 
+  ###
   products.on('sync', ()->
     listing = $('ul#products').html('')
     for product in products.models
       listing.append("<li>#{product.get('name')}</li>")
   )
+  ###
 
-  products.fetch()
 
 
 

@@ -25,22 +25,22 @@
   });
 
   require(['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation'], function($, _, Backbone, Products) {
-    var products;
+    var products, productsView;
     $(document).ready().foundation();
     products = new Products.Collection();
-    products.on('sync', function() {
-      var listing, product, _i, _len, _ref, _results;
-      console.log('here');
-      listing = $('ul#products').html('');
-      _ref = products.models;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        product = _ref[_i];
-        _results.push(listing.append("<li>" + (product.get('name')) + "</li>"));
-      }
-      return _results;
+    productsView = new Products.View({
+      collection: products,
+      el: '#products-container'
     });
     return products.fetch();
+
+    /*
+    products.on('sync', ()->
+      listing = $('ul#products').html('')
+      for product in products.models
+        listing.append("<li>#{product.get('name')}</li>")
+    )
+     */
   });
 
 }).call(this);
