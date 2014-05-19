@@ -19,8 +19,9 @@ The following items are simple descriptions so far. Content are implicit and sub
 * [X] setup front-office environment
 * [X] setup unit/integration test environment 
 * [X] push general ui mockups
-* [ ] create product 
-* [ ] list products
+* [X] list products
+* [X] create/edit/delete product
+* [ ] create/edit/delete product server side (REST API) and wire it
 * [ ] select product
 * [ ] create minimal backlog item creation form
 * [ ] list backlog items

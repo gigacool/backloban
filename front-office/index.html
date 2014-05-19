@@ -3,14 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Simple Product Backlog Manager</title>
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/foundation.min.css"/>
+    <link rel="stylesheet" href="css/override.css"/>
     <script src="js/3rdparties/modernizer/2.6.2/modernizr.min.js"></script>
 </head>
 <body>
-<h1>Hello Backlog!</h1>
-<div id="products-container"></div>
-<script src="js/3rdparties/require/2.1.2/require.js" data-main="js/main.js"></script>
 
+<section role="main" class="scroll-container">
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Hello Backlog!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns" id="products-container">
+        </div>
+    </div>
+</section>
+
+<script src="js/3rdparties/require/2.1.2/require.js" data-main="js/main.js"></script>
 </body>
 </html>
