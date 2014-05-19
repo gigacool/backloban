@@ -7,6 +7,15 @@ The project was designed to provide a complete nodejs web application together w
 The general idea is to provide a full scale web development tutorial, including its boilerplate. The project is also
 all about providing projects a simple project management support through agile concepts of backlog.
 
+## setup environment
+* Fork product branch
+* install node if not installed already.
+* in project folder, in a console, type
+    * npm install
+    * npm start
+
+That should setup everything, compile then launch the server. Now visit the application on http://localhost:3000 (by default)
+
 ## Current backlog items
 The following items are simple descriptions so far. Content are implicit and subject to continuous change :)
 
