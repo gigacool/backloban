@@ -31,14 +31,6 @@ require ['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation']
   productsView = new Products.View({collection:products, el:'#products-container'})
   products.fetch()
 
-  ###
-  products.on('sync', ()->
-    listing = $('ul#products').html('')
-    for product in products.models
-      listing.append("<li>#{product.get('name')}</li>")
-  )
-  ###
-
 
 
 

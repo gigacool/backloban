@@ -32,16 +32,23 @@
   };
 
   exports.update = function(req, res) {
+    var _ref;
+    if (((_ref = req.body) != null ? _ref._id : void 0) != null) {
+      req.body._id = ObjectId(req.body._id);
+    }
     return products.update({
       _id: ObjectId(req.params.id)
     }, req.body, function(error, newProduct) {
-      return res.send(error != null ? error : newProduct);
+      return res.send(error != null ? error : req.body);
     });
   };
 
   exports.add = function(req, res) {
     return products.insert(req.body, function(error, newProduct) {
-      return res.send(error != null ? error : newProduct);
+      if (newProduct.length !== 1) {
+        console.error(newProduct);
+      }
+      return res.send(error != null ? error : newProduct[0]);
     });
   };
 

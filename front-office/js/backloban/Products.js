@@ -2,13 +2,13 @@
   define(['jquery', 'underscore', 'backbone', 'handlebars'], function($, _, Backbone, Handlebars) {
     var Collection, Model, ProductView, ProductsView;
     Model = Backbone.Model.extend({
+      idAttribute: "_id",
       url: function() {
-        return "REST/products/" + (this.get('id'));
+        if (this.id != null) {
+          return "REST/products/" + this.id;
+        }
+        return "REST/products";
       }
-    });
-    Collection = Backbone.Collection.extend({
-      model: Model,
-      url: 'REST/products'
     });
     ProductView = Backbone.View.extend({
       tagName: 'div',
@@ -36,7 +36,8 @@
         return this.$el.find('#confirm-delete-state').show().next('div').show();
       },
       confirmDelete: function() {
-        return this.collection.remove(this.model);
+        this.collection.remove(this.model);
+        return this.model.destroy();
       },
       cancelDelete: function() {
         this.$el.find('#confirm-delete-state').hide().next('div').hide();
@@ -64,9 +65,17 @@
         }
         if ((newName != null) && newName !== "") {
           this.model.set('name', newName);
-          return this.render();
+          return this.model.save().done((function(_this) {
+            return function() {
+              return _this.render();
+            };
+          })(this));
         }
       }
+    });
+    Collection = Backbone.Collection.extend({
+      model: Model,
+      url: 'REST/products'
     });
     ProductsView = Backbone.View.extend({
       template: Handlebars.compile('<div id="product-backlog" class="row collapse"> <h3>Products backlogs</h3> </div> <div class="row collapse"> <div class="medium-8 large-10 columns"> <input id="add-product-input" type="text" placeholder="Add new product"/> </div> <div class="medium-4 large-2 columns"> <span id="add-product" class="button postfix expand disabled">add</span> </div> </div>'),
@@ -81,7 +90,8 @@
       },
       remove: function() {
         Backbone.View.prototype.remove.call(this);
-        return this.collection.off('sync', this.render);
+        this.collection.off('sync', this.render);
+        return this.collection.off('remove', this.render);
       },
       render: function() {
         var listing, product, _i, _len, _ref, _ref1, _results;
@@ -111,16 +121,21 @@
         }
       },
       addProduct: function() {
-        var newProductName;
+        var newModel, newProductName;
         if (this.$el.find('#add-product').hasClass('disabled')) {
           return;
         }
         newProductName = this.$el.find('#add-product-input').prop('value');
         if ((newProductName != null) && newProductName !== "") {
-          this.collection.add(new Model({
+          newModel = new Model({
             'name': newProductName
-          }));
-          return this.collection.trigger('sync');
+          });
+          return newModel.save().done((function(_this) {
+            return function() {
+              _this.collection.add(newModel);
+              return _this.collection.trigger('sync');
+            };
+          })(this));
         }
       }
     });

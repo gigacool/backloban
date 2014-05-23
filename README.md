@@ -9,9 +9,12 @@ all about providing projects a simple project management support through agile c
 
 ## setup environment
 * Fork product branch
+* install mongodb binaries
 * install node if not installed already.
+* in mongodb bin folder
+    * mongod.exe --dbpath %path to your database resources%
 * in project folder, in a console, type
-    * npm install
+    * npm install // only the first time or after checkouts
     * npm start
 
 That should setup everything, compile then launch the server. Now visit the application on http://localhost:3000 (by default)
@@ -30,8 +33,9 @@ The following items are simple descriptions so far. Content are implicit and sub
 * [X] push general ui mockups
 * [X] list products
 * [X] create/edit/delete product
-* [ ] create/edit/delete product server side (REST API) and wire it
-* [ ] select product
+* [X] create/edit/delete product server side (REST API) and wire it
+* [ ] improve slightly ergonomics, cancel edition mode if one clicks outside the product view
+* [ ] select product (i.e. go to the product detail view when product is selected)
 * [ ] create minimal backlog item creation form
 * [ ] list backlog items
 * [ ] add new item to listing

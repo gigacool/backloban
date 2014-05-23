@@ -7,16 +7,11 @@ define [
 
   # Defines a product model
   Model = Backbone.Model.extend({
+    idAttribute: "_id"
     url: ()->
-      "REST/products/#{@get('id')}"
+      return "REST/products/#{@id}" if @id?
+      return "REST/products"
   })
-
-  # Defines a product listing
-  Collection = Backbone.Collection.extend({
-    model: Model
-    url: 'REST/products'
-  })
-
 
   # Defines the view used to display, edit or delete a product.
   ProductView = Backbone.View.extend({
@@ -56,7 +51,7 @@ define [
       options.model.view = @
 
     render: ()->
-      @$el.html(@template(@model.toJSON()))
+      return @$el.html(@template(@model.toJSON()))
 
     delete: ()->
       @$el.find('#edit-state').hide().next('div').hide()
@@ -64,6 +59,7 @@ define [
 
     confirmDelete: ()->
       @collection.remove(@model)
+      @model.destroy()
 
     cancelDelete:()->
       @$el.find('#confirm-delete-state').hide().next('div').hide()
@@ -87,7 +83,15 @@ define [
         return
       if newName? and newName != ""
         @model.set('name', newName)
-        @render()
+        @model.save().done(()=>
+          @render()
+        )
+  })
+
+  # Defines a product listing
+  Collection = Backbone.Collection.extend({
+    model: Model
+    url: 'REST/products'
   })
 
   # Defines the view meant to display products and to add new products.
@@ -117,6 +121,7 @@ define [
     remove: ()->
       Backbone.View.prototype.remove.call(this)
       @collection.off('sync', @render)
+      @collection.off('remove', @render)
 
     render: ()->
       @$el.html(@template())
@@ -137,14 +142,17 @@ define [
       return if @$el.find('#add-product').hasClass('disabled')
       newProductName = @$el.find('#add-product-input').prop('value')
       if newProductName? and newProductName != ""
-        @collection.add(new Model({'name': newProductName}))
-        @collection.trigger('sync')
+        newModel = new Model({'name': newProductName})
+        newModel.save().done(()=>
+          @collection.add(newModel)
+          @collection.trigger('sync')
+        )
   })
 
   return {
-  Model
-  Collection
-  View: ProductsView
+    Model
+    Collection
+    View: ProductsView
   }
 
 

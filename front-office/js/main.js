@@ -36,14 +36,6 @@
       el: '#products-container'
     });
     return products.fetch();
-
-    /*
-    products.on('sync', ()->
-      listing = $('ul#products').html('')
-      for product in products.models
-        listing.append("<li>#{product.get('name')}</li>")
-    )
-     */
   });
 
 }).call(this);
