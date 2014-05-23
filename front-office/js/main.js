@@ -20,6 +20,9 @@
       'backbone': {
         deps: ['underscore', 'jquery'],
         exports: 'Backbone'
+      },
+      'foundation': {
+        deps: ['jquery']
       }
     }
   });

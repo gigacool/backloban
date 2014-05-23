@@ -13,7 +13,7 @@
     ProductView = Backbone.View.extend({
       tagName: 'div',
       className: 'row collapse product-listing',
-      template: Handlebars.compile('<div class="large-10 columns"> <input type="text" placeholder="Rename product" value="{{name}}" style="display:none;"/> <span class="button secondary postfix expand product">{{name}} »</span> </div> <div id="show-state" class="large-2 columns"> <span id="edit" class="button postfix expand">edit</span> </div> <div id="edit-state" class="large-1 columns" style="display:none;" > <span id="save" class="button postfix expand" >save</span> </div> <div class="large-1 columns" style="display:none;" > <span id="delete" class="button postfix expand" title="remove product">delete</span> </div> <div id="confirm-delete-state" class="large-1 columns" style="display:none;"> <span id="confirm-delete" class="button postfix expand alert">confirm</span> </div> <div class="large-1 columns" style="display:none;"> <span id="cancel-delete" class="button postfix expand ">cancel</span> </div>'),
+      template: Handlebars.compile('<div class="medium-8 large-10 columns"> <input type="text" placeholder="Rename product" value="{{name}}" style="display:none;"/> <span class="button secondary postfix expand product">{{name}} »</span> </div> <div id="show-state" class="medium-4 large-2 columns"> <span id="edit" class="button postfix expand">edit</span> </div> <div id="edit-state" class="medium-2 large-1 columns" style="display:none;" > <span id="save" class="button postfix expand" >save</span> </div> <div class="medium-2 large-1 columns" style="display:none;" > <span id="delete" class="button postfix expand" title="remove product">delete</span> </div> <div id="confirm-delete-state" class="medium-2 large-1 columns" style="display:none;"> <span id="confirm-delete" class="button postfix expand alert">confirm</span> </div> <div class="medium-2 large-1 columns" style="display:none;"> <span id="cancel-delete" class="button postfix expand ">cancel</span> </div>'),
       events: {
         'click #edit': 'edit',
         'click #save': 'save',
@@ -69,7 +69,7 @@
       }
     });
     ProductsView = Backbone.View.extend({
-      template: Handlebars.compile('<div id="product-backlog" class="row collapse"> <h3>Products backlogs</h3> </div> <div class="row collapse"> <div class="large-10 columns"> <input id="add-product-input" type="text" placeholder="Add new product"/> </div> <div class="large-2 columns"> <span id="add-product" class="button postfix expand disabled">add</span> </div> </div>'),
+      template: Handlebars.compile('<div id="product-backlog" class="row collapse"> <h3>Products backlogs</h3> </div> <div class="row collapse"> <div class="medium-8 large-10 columns"> <input id="add-product-input" type="text" placeholder="Add new product"/> </div> <div class="medium-4 large-2 columns"> <span id="add-product" class="button postfix expand disabled">add</span> </div> </div>'),
       events: {
         'click #add-product': 'addProduct',
         'keydown #add-product-input': 'cleanup',

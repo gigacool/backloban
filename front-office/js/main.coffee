@@ -20,6 +20,8 @@ require.config
     'backbone':
       deps: ['underscore', 'jquery']
       exports: 'Backbone'
+    'foundation':
+      deps:['jquery']
 
 require ['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation'], ($, _, Backbone, Products) ->
 

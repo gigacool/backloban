@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         coffee: {
             backoffice: {
                 expand: true,
-                flatten: true,
+                flatten: false,
                 cwd: 'back-office/',
                 src: ['**/*.coffee'],
                 dest: 'back-office/',

@@ -226,3 +226,11 @@ pip-log.txt
 .idea/jsLibraryMappings.xml
 .idea/jsLibraryMappings.xml
 .idea/jsLibraryMappings.xml
+.idea/libraries/backloban_node_modules.xml
+.idea/watcherTasks.xml
+.idea/watcherTasks.xml
+*.ns
+*.0
+*._0
+database/journal/lsn
+database/mongod.lock

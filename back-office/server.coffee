@@ -15,36 +15,24 @@
 ###
 PORT = process.env.PORT or 3000
 
-express = require('express')
-compress = require('compression')()
-fs = require('fs')
+express     = require('express')
+compress    = require('compression')()
+bodyParser  = require('body-parser')
+fs          = require('fs')
 
-products = JSON.parse(fs.readFileSync("./back-office/tmp-mocks/products.json"))
-
-
+console.log 'setup express server'
 server = express()
 server.use(compress)
-# Deliver static content
-server.use('/', express['static']('./front-office'), {maxAge: 86400000})
+server.use(bodyParser())
+server.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+server.use('/', express['static']('./front-office'), {maxAge: 86400000}) # Deliver static content
 
-server.get('/REST/products', (req, res)->
-  results = []
-  for product in products
-    results.push({
-      id:product.id
-      name:product.name
-      href:'/REST/products/'+product.id
-    })
-  res.send(results)
-)
-server.get('/REST/products/:id', (req, res)->
-  searching = parseInt(req.params.id)
-  for product in products
-    if product.id == searching
-      res.send(product)
-      return
-  req.send({})
-)
+console.log 'setup available server urls'
+products    = require('./models/Products');
+server.get('/REST/products', products.get)
+server.post('/REST/products', products.add)
+server.put('/REST/products/:id', products.update)
+server.delete('/REST/products/:id', products.delete)
 
 console.log('Starting server on port', PORT)
 server.listen(PORT)

@@ -7,9 +7,9 @@
     "Cédric Hartland <cedric.hartland@gmail.com>"
   ],
   "scripts": {
-    "prestart":"grunt",
+    "prestart": "grunt",
     "start": "node ./back-office/server",
-    "pretest":"grunt",
+    "pretest": "grunt",
     "test": "./node_modules/.bin/mocha"
   },
   "main": "./back-office/server",
@@ -23,8 +23,10 @@
     "kanban"
   ],
   "dependencies": {
+    "body-parser": "^1.2.0",
+    "compression": "~1.0.1",
     "express": "~4.1.0",
-    "compression": "~1.0.1"
+    "mongodb": "^1.4.4"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
