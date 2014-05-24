@@ -13,8 +13,9 @@
     ProductView = Backbone.View.extend({
       tagName: 'div',
       className: 'row collapse product-listing',
-      template: Handlebars.compile('<div class="medium-8 large-10 columns"> <input type="text" placeholder="Rename product" value="{{name}}" style="display:none;"/> <span class="button secondary postfix expand product">{{name}} »</span> </div> <div id="show-state" class="medium-4 large-2 columns"> <span id="edit" class="button postfix expand">edit</span> </div> <div id="edit-state" class="medium-2 large-1 columns" style="display:none;" > <span id="save" class="button postfix expand" >save</span> </div> <div class="medium-2 large-1 columns" style="display:none;" > <span id="delete" class="button postfix expand" title="remove product">delete</span> </div> <div id="confirm-delete-state" class="medium-2 large-1 columns" style="display:none;"> <span id="confirm-delete" class="button postfix expand alert">confirm</span> </div> <div class="medium-2 large-1 columns" style="display:none;"> <span id="cancel-delete" class="button postfix expand ">cancel</span> </div>'),
+      template: Handlebars.compile('<div class="medium-8 large-10 columns"> <input type="text" placeholder="Rename product" value="{{name}}" style="display:none;"/> <span id="product" class="button secondary postfix expand product">{{name}} »</span> </div> <div id="show-state" class="medium-4 large-2 columns"> <span id="edit" class="button postfix expand">edit</span> </div> <div id="edit-state" class="medium-2 large-1 columns" style="display:none;" > <span id="save" class="button postfix expand" >save</span> </div> <div class="medium-2 large-1 columns" style="display:none;" > <span id="delete" class="button postfix expand" title="remove product">delete</span> </div> <div id="confirm-delete-state" class="medium-2 large-1 columns" style="display:none;"> <span id="confirm-delete" class="button postfix expand alert">confirm</span> </div> <div class="medium-2 large-1 columns" style="display:none;"> <span id="cancel-delete" class="button postfix expand ">cancel</span> </div>'),
       events: {
+        'click #product': 'selectProduct',
         'click #edit': 'edit',
         'click #save': 'save',
         'click #delete': 'delete',
@@ -44,9 +45,19 @@
         return this.$el.find('#edit-state').show().next('div').show();
       },
       edit: function() {
+        var resstoreOnClickOutside;
         this.$el.find('input').show().next('span').hide();
         this.$el.find('#show-state').hide();
-        return this.$el.find('#edit-state').show().next('div').show();
+        this.$el.find('#edit-state').show().next('div').show();
+        resstoreOnClickOutside = (function(_this) {
+          return function(event) {
+            if (!_this.$el.is(event.target) && _this.$el.has(event.target).length === 0) {
+              $(document).off('mouseup', resstoreOnClickOutside);
+              return _this.render();
+            }
+          };
+        })(this);
+        return $(document).on('mouseup', resstoreOnClickOutside);
       },
       renameOnEnter: function(event) {
         if (13 === event.keyCode) {
@@ -71,6 +82,11 @@
             };
           })(this));
         }
+      },
+      selectProduct: function(event) {
+        return Backbone.history.navigate("products/" + (this.model.get('_id')), {
+          trigger: true
+        });
       }
     });
     Collection = Backbone.Collection.extend({
@@ -94,19 +110,19 @@
         return this.collection.off('remove', this.render);
       },
       render: function() {
-        var listing, product, _i, _len, _ref, _ref1, _results;
+        var listing, product, _i, _len, _ref, _ref1;
+        console.log('render products');
         this.$el.html(this.template());
         listing = this.$el.find('#product-backlog');
         _ref1 = (_ref = this.collection) != null ? _ref.models : void 0;
-        _results = [];
         for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
           product = _ref1[_i];
-          _results.push(listing.append(new ProductView({
+          listing.append(new ProductView({
             model: product,
             collection: this.collection
-          }).render()));
+          }).render());
         }
-        return _results;
+        return this.rendered = true;
       },
       cleanup: function(event) {
         if (8 === event.keyCode && this.$el.find('#add-product-input').prop('value').length === 1) {
@@ -137,6 +153,9 @@
             };
           })(this));
         }
+      },
+      isRendered: function() {
+        return (this.render != null) && this.render;
       }
     });
     return {

@@ -27,15 +27,10 @@
     }
   });
 
-  require(['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation'], function($, _, Backbone, Products) {
-    var products, productsView;
+  require(['jquery', 'underscore', 'backbone', 'Router', 'foundation'], function($, _, Backbone, Router) {
     $(document).ready().foundation();
-    products = new Products.Collection();
-    productsView = new Products.View({
-      collection: products,
-      el: '#products-container'
-    });
-    return products.fetch();
+    new Router();
+    return Backbone.history.start();
   });
 
 }).call(this);

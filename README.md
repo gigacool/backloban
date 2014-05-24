@@ -26,6 +26,45 @@ The following items are simple descriptions so far. Content are implicit and sub
 *  product backlog or backlog : Prioritized features list for a given product. 
 *  backlog item or item : One of the features for the product with a short description.
 
+### Models
+
+# Product
+    {
+      _id: ObjectId,
+      name: text,
+      description(?): text,
+      doing-backlog: backlog, 
+      todo-backlog: backlog,
+      done-backlog: backlog
+    }
+
+# Backlog
+    {
+      _id: ObjectId,
+      items:[
+        {
+            _id: ObjectId,
+            name:text,
+            detail: text,
+            cost: int
+        }, ...
+      ]
+     }
+
+# ItemTasks 
+    {
+        _id:ObjectId,
+        itemId:ObjectId,
+        tasks:[
+          {
+            _id:ObjectId,
+            name:text,
+            detail:text,
+            status:(todo| doing| done)
+          }, ...
+        ]
+    }
+
 ### Current Backlog 
 * [X] Setup application content (package.json, Gruntfile.js)
 * [X] setup front-office environment
@@ -34,7 +73,7 @@ The following items are simple descriptions so far. Content are implicit and sub
 * [X] list products
 * [X] create/edit/delete product
 * [X] create/edit/delete product server side (REST API) and wire it
-* [ ] improve slightly ergonomics, cancel edition mode if one clicks outside the product view
+* [X] improve slightly ergonomics, cancel edition mode if one clicks outside the product view
 * [ ] select product (i.e. go to the product detail view when product is selected)
 * [ ] create minimal backlog item creation form
 * [ ] list backlog items

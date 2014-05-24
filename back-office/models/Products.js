@@ -1,5 +1,5 @@
 (function() {
-  var DATABASE, DATABASE_PORT, ObjectId, products;
+  var DATABASE, DATABASE_PORT, ObjectId, backlogs, products;
 
   DATABASE = process.env.DATABASE || "localhost";
 
@@ -9,6 +9,8 @@
 
   products = null;
 
+  backlogs = null;
+
   console.log('connecting to database:', DATABASE, 'on port:', DATABASE_PORT);
 
   require('mongodb').MongoClient.connect("mongodb://" + DATABASE + ":" + 27017 + "{DATABASE_PORT}/backloban", function(error, db) {
@@ -16,18 +18,33 @@
       return console.dir(error);
     }
     console.log('connected to database');
-    return db.createCollection('products', function(error, collection) {
+    db.createCollection('products', function(error, collection) {
       if (error) {
         return console.dir(error);
       }
       products = collection;
       return console.log('connected to database:products collection');
     });
+    return db.createCollection('backlogs', function(error, collection) {
+      if (error) {
+        return console.dir(error);
+      }
+      backlogs = collection;
+      return console.log('connected to database:backlog collection');
+    });
   });
 
   exports.get = function(req, res) {
-    return products.find().toArray(function(error, items) {
+    return products.find({}).toArray(function(error, items) {
       return res.send(error != null ? error : items);
+    });
+  };
+
+  exports.getOne = function(req, res) {
+    return products.findOne({
+      _id: ObjectId(req.params.id)
+    }, function(error, product) {
+      return res.send(error != null ? error : product);
     });
   };
 
@@ -44,11 +61,16 @@
   };
 
   exports.add = function(req, res) {
-    return products.insert(req.body, function(error, newProduct) {
-      if (newProduct.length !== 1) {
-        console.error(newProduct);
-      }
-      return res.send(error != null ? error : newProduct[0]);
+    return backlogs.insert([{}, {}, {}], function(error, newBacklogs) {
+      req.body.doneBacklog = newBacklogs[0]._id;
+      req.body.doingBacklog = newBacklogs[1]._id;
+      req.body.todoBacklog = newBacklogs[2]._id;
+      return products.insert(req.body, function(error, newProduct) {
+        if (newProduct.length !== 1) {
+          console.error(newProduct);
+        }
+        return res.send(error != null ? error : newProduct[0]);
+      });
     });
   };
 

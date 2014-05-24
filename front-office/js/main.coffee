@@ -23,13 +23,13 @@ require.config
     'foundation':
       deps:['jquery']
 
-require ['jquery', 'underscore', 'backbone', 'backloban/Products', 'foundation'], ($, _, Backbone, Products) ->
+require ['jquery', 'underscore', 'backbone', 'Router', 'foundation'], ($, _, Backbone, Router) ->
 
   $(document).ready().foundation()
 
-  products = new Products.Collection()
-  productsView = new Products.View({collection:products, el:'#products-container'})
-  products.fetch()
+  new Router()
+  Backbone.history.start()
+
 
 
 

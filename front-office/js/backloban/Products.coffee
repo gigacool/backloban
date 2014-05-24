@@ -19,7 +19,7 @@ define [
     className: 'row collapse product-listing'
     template: Handlebars.compile('<div class="medium-8 large-10 columns">
             <input type="text" placeholder="Rename product" value="{{name}}" style="display:none;"/>
-            <span class="button secondary postfix expand product">{{name}} »</span>
+            <span id="product" class="button secondary postfix expand product">{{name}} »</span>
           </div>
           <div id="show-state" class="medium-4 large-2 columns">
             <span id="edit" class="button postfix expand">edit</span>
@@ -39,6 +39,7 @@ define [
           ')
 
     events:
+      'click #product' : 'selectProduct'
       'click #edit': 'edit'
       'click #save': 'save'
       'click #delete': 'delete'
@@ -69,6 +70,11 @@ define [
       @$el.find('input').show().next('span').hide()
       @$el.find('#show-state').hide()
       @$el.find('#edit-state').show().next('div').show()
+      resstoreOnClickOutside = (event) =>
+        if !@$el.is(event.target) and @$el.has(event.target).length == 0
+          $(document).off('mouseup', resstoreOnClickOutside) # can be improved (removed on click out, not save or other actions)
+          @render()
+      $(document).on('mouseup', resstoreOnClickOutside)
 
     renameOnEnter: (event)->
       @save() if 13 == event.keyCode
@@ -86,6 +92,9 @@ define [
         @model.save().done(()=>
           @render()
         )
+
+    selectProduct:(event)->
+      Backbone.history.navigate("products/#{@model.get('_id')}", {trigger:true})
   })
 
   # Defines a product listing
@@ -124,10 +133,12 @@ define [
       @collection.off('remove', @render)
 
     render: ()->
+      console.log 'render products'
       @$el.html(@template())
       listing = @$el.find('#product-backlog')
       for product in @collection?.models
         listing.append(new ProductView({model: product, collection: @collection}).render())
+      @rendered = true
 
     cleanup: (event)->
       if 8 == event.keyCode and @$el.find('#add-product-input').prop('value').length == 1 # before removal of last character
@@ -147,6 +158,9 @@ define [
           @collection.add(newModel)
           @collection.trigger('sync')
         )
+
+    isRendered:()->
+      return @render? and @render
   })
 
   return {
