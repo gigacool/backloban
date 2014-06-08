@@ -74,7 +74,7 @@ The following items are simple descriptions so far. Content are implicit and sub
 * [X] create/edit/delete product
 * [X] create/edit/delete product server side (REST API) and wire it
 * [X] improve slightly ergonomics, cancel edition mode if one clicks outside the product view
-* [ ] select product (i.e. go to the product detail view when product is selected)
+* [X] select product (i.e. go to the product detail view when product is selected)
 * [ ] create minimal backlog item creation form
 * [ ] list backlog items
 * [ ] add new item to listing

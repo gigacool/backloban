@@ -133,7 +133,6 @@ define [
       @collection.off('remove', @render)
 
     render: ()->
-      console.log 'render products'
       @$el.html(@template())
       listing = @$el.find('#product-backlog')
       for product in @collection?.models

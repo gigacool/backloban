@@ -111,7 +111,6 @@
       },
       render: function() {
         var listing, product, _i, _len, _ref, _ref1;
-        console.log('render products');
         this.$el.html(this.template());
         listing = this.$el.find('#product-backlog');
         _ref1 = (_ref = this.collection) != null ? _ref.models : void 0;

@@ -27,13 +27,15 @@
         return this.model.on('sync', this.render, this);
       },
       remove: function() {
-        this.model.off('sync', this.render);
-        if (this.todo != null) {
-          this.todo.remove();
+        var _ref, _ref1;
+        if ((_ref = this.todo) != null) {
+          _ref.remove();
         }
-        if (this.doing != null) {
-          return this.doing.remove();
+        if ((_ref1 = this.doing) != null) {
+          _ref1.remove();
         }
+        Backbone.View.prototype.remove.call(this);
+        return this.model.off('sync', this.render);
       },
       render: function() {
         this.$el.html(this.template(this.model.toJSON()));

@@ -5,6 +5,8 @@ define [
   'backloban/Products'
   'backloban/Backlog'
 ], ($, _, Backbone, Products, Backlog) ->
+
+  # We fetch content everytime we get to the page to keep up to date as much as possible.
   Router = Backbone.Router.extend({
 
     routes:
@@ -12,30 +14,24 @@ define [
       'products/:id': "product"
 
     home: () ->
-      console.log "home"
-      @backlogView?.$el.children().animate({height: 0, opacity: 0}, 'slow', () ->
-        $(this).remove();
-      )
+      $('#products-container').append('<div id="products-container-el"></div>')
       products = new Products.Collection()
-      @productView?.remove()
       @productView = new Products.View({
         collection:products
-        el:'#products-container'
+        el:'#products-container-el'
       })
       products.fetch()
+      @backlogView?.remove()
 
     product: (productId) ->
-      @productView?.$el.children().animate({height: 0, opacity: 0}, 'slow', () ->
-          $(this).remove();
-      )
-
+      $('#product-backlogs').append('<div id="product-backlogs-el"></div>')
       product = new Products.Model({'_id':productId})
       @backlogView = new Backlog.View({
         model: product
-        el: '#product-backlogs'
+        el: '#product-backlogs-el'
       })
       product.fetch()
-
+      @productView?.remove()
 
   })
 

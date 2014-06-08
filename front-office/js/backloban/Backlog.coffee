@@ -53,9 +53,10 @@ define [
       @model.on('sync', @render, this)
 
     remove:()->
+      @todo?.remove()
+      @doing?.remove()
+      Backbone.View.prototype.remove.call(this)
       @model.off('sync', @render)
-      @todo.remove() if @todo?
-      @doing.remove() if @doing?
 
     render: ()->
       @$el.html(@template(@model.toJSON()))

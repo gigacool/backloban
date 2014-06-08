@@ -7,44 +7,28 @@
         'products/:id': "product"
       },
       home: function() {
-        var products, _ref, _ref1;
-        console.log("home");
-        if ((_ref = this.backlogView) != null) {
-          _ref.$el.children().animate({
-            height: 0,
-            opacity: 0
-          }, 'slow', function() {
-            return $(this).remove();
-          });
-        }
+        var products, _ref;
+        $('#products-container').append('<div id="products-container-el"></div>');
         products = new Products.Collection();
-        if ((_ref1 = this.productView) != null) {
-          _ref1.remove();
-        }
         this.productView = new Products.View({
           collection: products,
-          el: '#products-container'
+          el: '#products-container-el'
         });
-        return products.fetch();
+        products.fetch();
+        return (_ref = this.backlogView) != null ? _ref.remove() : void 0;
       },
       product: function(productId) {
         var product, _ref;
-        if ((_ref = this.productView) != null) {
-          _ref.$el.children().animate({
-            height: 0,
-            opacity: 0
-          }, 'slow', function() {
-            return $(this).remove();
-          });
-        }
+        $('#product-backlogs').append('<div id="product-backlogs-el"></div>');
         product = new Products.Model({
           '_id': productId
         });
         this.backlogView = new Backlog.View({
           model: product,
-          el: '#product-backlogs'
+          el: '#product-backlogs-el'
         });
-        return product.fetch();
+        product.fetch();
+        return (_ref = this.productView) != null ? _ref.remove() : void 0;
       }
     });
     return Router;
