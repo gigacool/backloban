@@ -27,7 +27,8 @@
         if (options.model.view != null) {
           options.model.view.remove();
         }
-        return options.model.view = this;
+        options.model.view = this;
+        return this;
       },
       render: function() {
         return this.$el.html(this.template(this.model.toJSON()));
@@ -121,7 +122,8 @@
             collection: this.collection
           }).render());
         }
-        return this.rendered = true;
+        this.rendered = true;
+        return this;
       },
       cleanup: function(event) {
         if (8 === event.keyCode && this.$el.find('#add-product-input').prop('value').length === 1) {

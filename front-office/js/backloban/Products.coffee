@@ -50,6 +50,7 @@ define [
     initialize: (options) ->
       options.model.view.remove() if options.model.view?
       options.model.view = @
+      @
 
     render: ()->
       return @$el.html(@template(@model.toJSON()))
@@ -138,6 +139,7 @@ define [
       for product in @collection?.models
         listing.append(new ProductView({model: product, collection: @collection}).render())
       @rendered = true
+      @
 
     cleanup: (event)->
       if 8 == event.keyCode and @$el.find('#add-product-input').prop('value').length == 1 # before removal of last character
